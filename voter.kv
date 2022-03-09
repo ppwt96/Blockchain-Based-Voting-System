@@ -1,0 +1,1843 @@
+<LoginScreen>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'LOGIN'
+            btn: ''
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.5)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'USERNAME'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: username
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'PASSWORD'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: password
+                    font_size: self.height * (3/5)
+                    password: True
+                    multiline: False
+
+            BoxLayout:
+                size_hint: (1, 0.95)
+                padding: 10
+                spacing: 10
+                RoundedButton:
+                    colour: (0.17,0.37,0.55,1)
+                    text: 'NEW USER'
+                    font_size: root.height/25
+                    on_release: root.create_new_user()
+
+                RoundedButton:
+                    colour: (0.85,0.1,0.1,1)
+                    text: 'LOGIN'
+                    font_size: root.height/25
+                    on_release: root.login(username.text, password.text)
+
+
+<CreateUser>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'CREATE USER'
+            btn: 'BACK'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'USERNAME'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: username
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'PASSWORD'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: password
+                    font_size: self.height * (3/5)
+                    password: True
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: ' CONFIRM PASSWORD'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: confirm
+                    font_size: self.height * (3/5)
+                    password: True
+                    multiline: False
+
+            BoxLayout:
+                padding_x: self.width/15
+                RoundedButton:
+                    text: 'SUBMIT'
+                    colour: (0.85,0.1,0.1,1)
+                    font_size: root.height/30
+                    on_release: root.submit(username.text, password.text, confirm.text)
+
+<Dashboard>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'DASHBOARD'
+            btn: 'LOG OUT'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint:(0.6, 1)
+                orientation: 'vertical'
+                padding: self.width/20
+                canvas:
+                    Color:
+                        rgba: 0.14,0.17,0.19,1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10,]
+                GridLayout:
+                    cols: 2
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'PUBLIC KEY:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.address[0:33] + '\n' + app.address[33:]
+                        font_size: root.width/55
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'EMPTY TOKENS:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.empty_tokens
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'OPEN POLLS:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.number_of_polls
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'PENDING VOTES:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.my_pending_votes
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'BLOCKS MINED:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.blocks_mined
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'LAST BLOCK:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.last_block[0:32] + '\n' + app.last_block[32:]
+                        font_size: root.width/55
+            BoxLayout:
+                orientation: 'vertical'
+                padding: 10
+                spacing: 15
+                size_hint: (0.4, 1)
+                RoundedButton:
+                    text: 'NETWORK'
+                    font_size: root.height/25
+                    colour: (0.17, 0.37, 0.55)
+                    on_release: root.network()
+                RoundedButton:
+                    text: 'TRANSACTIONS'
+                    font_size: root.height/25
+                    colour: (0.17, 0.37, 0.55)
+                    on_release: root.transactions()
+                RoundedButton:
+                    text: 'EXPLORER'
+                    font_size: root.height/25
+                    colour: (0.17, 0.37, 0.55)
+                    on_release: root.explorer()
+                RoundedButton:
+                    text: 'CONSOLE'
+                    font_size: root.height/25
+                    colour: (0.17, 0.37, 0.55)
+                    on_release: root.console()
+                RoundedButton:
+                    text: 'SETTINGS'
+                    font_size: root.height/25
+                    colour: (0.17, 0.37, 0.55)
+                    on_release: root.settings()
+
+<Network>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'NETWORK'
+            btn: 'DASHBOARD'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint:(0.4, 1)
+                orientation: 'vertical'
+                padding: self.width/20
+                canvas:
+                    Color:
+                        rgba: 0.14,0.17,0.19,1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10,]
+
+                GridLayout:
+                    cols: 2
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'IP ADDRESS:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.ip
+                        font_size: root.height/35
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'ROOT NODE:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.default_node
+                        font_size: root.height/35
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'MAX PEERS:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.max_peers
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'SENT:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.sent
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'RECEIVED:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.received
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'LAST NODE:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.last_node
+                        font_size: root.height/35
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.3,1)
+                padding: 10
+                Label:
+                    size_hint: (1, None)
+                    height: self.texture_size[1]
+                    text: 'INBOUND'
+                    font_size: root.height/35
+                    color: [0,0,0,1]
+                    bold: True
+
+                ScrollView:
+                    padding: 10
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    scroll_wheel_distance: 30
+
+                    GridLayout:
+                        id: inbound_grid
+                        cols: 1
+                        spacing: 10
+                        size_hint:(1, None)
+                        minimum_height: root.height
+                        height: self.minimum_height
+                        row_default_height: root.height/15
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.3,1)
+                padding: 10
+                Label:
+                    size_hint: (1, None)
+                    height: self.texture_size[1]
+                    text: 'OUTBOUND'
+                    font_size: root.height/35
+                    color: [0,0,0,1]
+                    bold: True
+
+                ScrollView:
+                    padding: 10
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    scroll_wheel_distance: 30
+
+                    GridLayout:
+                        id: outbound_grid
+                        cols: 1
+                        spacing: 10
+                        size_hint:(1, None)
+                        minimum_height: root.height
+                        height: self.minimum_height
+                        row_default_height: root.height/15
+
+
+
+<WalletOverview>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'WALLET'
+            btn: 'DASHBOARD'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint:(0.4, 1)
+                orientation: 'vertical'
+                padding: self.width/20
+                canvas:
+                    Color:
+                        rgba: 0.14,0.17,0.19,1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10,]
+
+                GridLayout:
+                    cols: 2
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Tokens:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.empty_tokens
+                        font_size: root.height/35
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Spendable Tokens:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.spendable_tokens
+                        font_size: root.height/35
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'My Polls:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.number_of_polls
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Pending Votes:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.my_pending_votes
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Submitted Votes:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.submitted_votes
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Confirmed Votes:'
+                        font_size: root.height/30
+                    Label:
+                        text: app.confirmed_votes
+                        font_size: root.height/30
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.3,1)
+                padding: 10
+                Label:
+                    size_hint: (1, None)
+                    height: self.texture_size[1]
+                    text: 'My Polls'
+                    font_size: root.height/35
+                    color: [0,0,0,1]
+                    bold: True
+
+                ScrollView:
+                    padding: 10
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    scroll_wheel_distance: 30
+
+                    GridLayout:
+                        id: polls_grid
+                        cols: 1
+                        spacing: 10
+                        size_hint:(1, None)
+                        minimum_height: root.height
+                        height: self.minimum_height
+                        row_default_height: root.height/15
+
+                RoundedButton:
+                    size_hint: (1, 0.1)
+                    width: root.width/4
+                    pos_hint:{'center_x': 0.5}
+                    text: 'New Poll'
+                    font_size: root.height/35
+                    colour: (0.85,0.1,0.1,1)
+                    on_release: root.create_poll()
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.3,1)
+                padding: 10
+                Label:
+                    size_hint: (1, None)
+                    height: self.texture_size[1]
+                    text: 'Pending Votes'
+                    font_size: root.height/35
+                    color: [0,0,0,1]
+                    bold: True
+
+                ScrollView:
+                    padding: 10
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    scroll_wheel_distance: 30
+
+                    GridLayout:
+                        id: pending_grid
+                        cols: 1
+                        spacing: 10
+                        size_hint:(1, None)
+                        minimum_height: root.height
+                        height: self.minimum_height
+                        row_default_height: root.height/15
+
+                RoundedButton:
+                    size_hint: (1, 0.1)
+                    width: root.width/4
+                    pos_hint:{'center_x': 0.5}
+                    text: 'Make Transaction'
+                    font_size: root.height/35
+                    colour: (0.85,0.1,0.1,1)
+                    on_release: root.create_tx()
+
+
+<CreatePoll>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'CREATE POLL'
+            btn: 'CANCEL'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'TITLE'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: title
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'QUESTION'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: question
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'NUMBER OF OPTIONS'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: options
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+
+            BoxLayout:
+                padding_x: self.width/15
+                RoundedButton:
+                    text: 'SUBMIT'
+                    colour: (0.85,0.1,0.1,1)
+                    font_size: root.height/30
+                    on_release: root.submit(title.text, question.text, options.text)
+
+
+<AddOptions>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'Add Options: ' + root.title
+            btn: 'CANCEL'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+
+            ScrollView:
+                padding: 10
+                do_scroll_x: False
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                GridLayout:
+                    id: options_grid
+                    cols: 1
+                    spacing: 10
+                    size_hint:(1, None)
+                    minimum_height: root.height
+                    height: self.minimum_height
+                    row_default_height: root.height/10
+
+            RoundedButton:
+                size_hint: (1, 0.1)
+                width: root.width/4
+                pos_hint:{'center_x': 0.5}
+                text: 'CREATE POLL'
+                font_size: root.height/35
+                colour: (0.85,0.1,0.1,1)
+                on_release: root.create_poll()
+
+
+
+<Poll>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'Poll: ' + root.title
+            btn: 'WALLET'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint:(0.45, 1)
+                orientation: 'vertical'
+                padding: self.width/20
+                canvas:
+                    Color:
+                        rgba: 0.14,0.17,0.19,1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10,]
+
+                GridLayout:
+                    id: grid
+                    cols: 2
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Question:'
+                        font_size: root.height/30
+                    Label:
+                        text: root.question
+                        font_size: root.height/35
+                        multiline: True
+                        split_str: ' '
+                        text_size: (self.width, None)
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Poll Funds'
+                        font_size: root.height/30
+                    Label:
+                        text: root.funds
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Serialized Tokens'
+                        font_size: root.height/30
+                    Label:
+                        text: root.serialized
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'Submitted Votes'
+                        font_size: root.height/30
+                    Label:
+                        text: root.submitted
+                        font_size: root.height/30
+
+
+            BoxLayout:
+                orientation: 'vertical'
+                size_hint: (0.55,1)
+                spacing: 10
+                padding: 10
+                BoxLayout:
+                    orientation: 'vertical'
+                    size_hint: (1, 0.9)
+                    padding: 15
+                    canvas:
+                        Color:
+                            rgba: 0.14,0.17,0.19,1
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            radius: [10,]
+                    Label:
+                        size_hint: (None, None)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        height: self.texture_size[1]
+                        text: 'RESULTS'
+                        font_size: root.height/30
+                        bold: True
+
+                    ScrollView:
+                        do_scroll_x: False
+                        do_scroll_y: True
+                        scroll_wheel_distance: 30
+
+                        GridLayout:
+                            id: polls_grid
+                            cols: 2
+                            spacing: 10
+                            size_hint:(1, None)
+                            minimum_height: root.height
+                            height: self.minimum_height
+                            row_default_height: root.height/15
+
+                BoxLayout:
+                    size_hint: (1, 0.1)
+                    spacing: 10
+                    RoundedButton:
+                        size_hint: (1, 1)
+                        width: root.width/4
+                        pos_hint:{'center_x': 0.5}
+                        text: 'Get Funds'
+                        font_size: root.height/35
+                        colour: (0.85,0.1,0.1,1)
+                        on_release: root.get_funds()
+                    RoundedButton:
+                        size_hint: (1, 1)
+                        width: root.width/4
+                        pos_hint:{'center_x': 0.5}
+                        text: 'Sell Funds'
+                        font_size: root.height/35
+                        colour: (0.85,0.1,0.1,1)
+                        on_release: root.sell_funds()
+                    RoundedButton:
+                        size_hint: (1, 1)
+                        width: root.width/4
+                        pos_hint:{'center_x': 0.5}
+                        text: 'Serialize Token'
+                        font_size: root.height/35
+                        colour: (0.85,0.1,0.1,1)
+                        on_release: root.serialize_token()
+
+
+
+<CreateTransaction>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'CREATE TRANSACTION'
+            btn: 'WALLET'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.9, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'FROM ADDRESS'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: from_addr
+                    font_size: self.height * (2/5)
+                    text: root.from_addr
+                    readonly: True
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'TO ADDRESS'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: to_addr
+                    font_size: self.height * (2/5)
+                    text: root.to_addr
+                    readonly: root.poll
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'AMOUNT'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: amount
+                    font_size: self.height * (3/5)
+                    multiline: False
+
+            BoxLayout:
+                padding_x: self.width/15
+                FloatLayout:
+                    id: f
+                    RoundedButton:
+                        size_hint: (0.5, 0.8)
+                        pos: (f.center_x - self.width/2, f.center_y - self.height/2)
+                        text: 'SIGN TRANSACTION'
+                        colour: (0.85,0.1,0.1,1)
+                        font_size: root.height/30
+                        on_release: root.sign_tx(from_addr.text, to_addr.text, amount.text)
+
+
+<CreateVote>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'Serialise Vote'
+            btn: 'WALLET'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.9, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+            BoxLayout:
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: root.question
+                    font_size: root.height/20
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'POLL ADDRESS'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: from_addr
+                    font_size: self.height * (2/5)
+                    text: root.poll_addr
+                    readonly: True
+                    multiline: False
+
+            BoxLayout:
+                orientation: 'vertical'
+
+                Label:
+                    size_hint: (None, None)
+                    height: self.texture_size[1]
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    pos_y: 0
+                    text: 'VOTER ADDRESS'
+                    font_size: root.height/20
+
+                TextInput:
+                    id: to_addr
+                    font_size: self.height * (2/5)
+                    multiline: False
+
+            BoxLayout:
+                padding_x: self.width/15
+                FloatLayout:
+                    id: f
+                    RoundedButton:
+                        size_hint: (0.5, 0.8)
+                        pos: (f.center_x - self.width/2, f.center_y - self.height/2)
+                        text: 'SIGN TRANSACTION'
+                        colour: (0.85,0.1,0.1,1)
+                        font_size: root.height/30
+                        on_release: root.sign_tx(from_addr.text, to_addr.text)
+
+
+<SubmitVote>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'Submit Vote'
+            btn: 'WALLET'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.8, 0.6)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+            Label:
+                size_hint: (None, None)
+                width: self.texture_size[0]
+                height: self.texture_size[1]
+                pos_x: self.width/2
+                text: root.question
+                font_size: root.height/30
+            ScrollView:
+                padding: 10
+                do_scroll_x: False
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                GridLayout:
+                    id: options_grid
+                    cols: 1
+                    spacing: 10
+                    size_hint:(1, None)
+                    minimum_height: root.height
+                    height: self.minimum_height
+                    row_default_height: root.height/12
+
+            RoundedButton:
+                size_hint: (1, 0.1)
+                width: root.width/4
+                pos_hint:{'center_x': 0.5}
+                text: 'SUBMIT'
+                font_size: root.height/35
+                colour: (0.85,0.1,0.1,1)
+                on_release: root.submit()
+
+
+
+<Console>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'CONSOLE'
+            btn: 'DASHBOARD'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            ScrollView:
+                size_hint: (1, 0.95)
+                padding: 10
+                do_scroll_x: False
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                Label:
+                    size_hint: (None,None)
+                    width: self.texture_size[0]
+                    height: self.texture_size[1]
+                    pos_x: self.width/2
+                    font_size: root.height/35
+                    text: app.console
+                    color: (0,0,0,1)
+
+            RoundedButton:
+                size_hint: (None, 0.05)
+                width: root.width/4
+                pos_hint:{'center_x': 0.5}
+                text: 'CLEAR'
+                font_size: root.height/35
+                colour: (0.85,0.1,0.1,1)
+                on_release: root.clear()
+
+<Explorer>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'BLOCKCHAIN EXPLORER'
+            btn: 'DASHBOARD'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            ScrollView:
+                size_hint: (1, 0.95)
+                padding: 10
+                do_scroll_x: False
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                GridLayout:
+                    id: block_grid
+                    cols: 5
+                    spacing: 10
+                    size_hint:(1, None)
+                    minimum_height: root.height
+                    height: self.minimum_height
+                    row_default_height: root.height/15
+
+<Block>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'BLOCK ' + root.number
+            btn: 'BACK'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            size_hint: (1, 0.75)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 20
+            BoxLayout:
+                size_hint:(0.6, 1)
+                orientation: 'vertical'
+                padding: self.width/20
+                canvas:
+                    Color:
+                        rgba: 0.14,0.17,0.19,1
+                    RoundedRectangle:
+                        size: self.size
+                        pos: self.pos
+                        radius: [10,]
+                GridLayout:
+                    cols: 2
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'HASH'
+                        font_size: root.height/30
+                    Label:
+                        id: hash
+                        font_size: root.width/55
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'PREVIOUS\nHASH:'
+                        font_size: root.height/30
+                    Label:
+                        id: p_hash
+                        font_size: root.width/55
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'DIFFICULTY:'
+                        font_size: root.height/30
+                    Label:
+                        id: difficulty
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'NONCE:'
+                        font_size: root.height/30
+                    Label:
+                        id: nonce
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'TIMESTAMP:'
+                        font_size: root.height/30
+                    Label:
+                        id: timestamp
+                        font_size: root.height/30
+
+                    Label:
+                        size_hint: (None, 1)
+                        width: self.texture_size[0]
+                        pos_x: self.width/2
+                        text: 'TRANSACTIONS:'
+                        font_size: root.height/30
+                    Label:
+                        id: txs
+                        font_size: root.height/30
+
+            BoxLayout:
+                orientation: 'vertical'
+                padding: 10
+                spacing: 15
+                size_hint: (0.4, 1)
+                Label:
+                    size_hint: (1, None)
+                    height: self.texture_size[1]
+                    text: 'Transactions'
+                    font_size: root.height/35
+                    color: [0,0,0,1]
+                    bold: True
+
+                ScrollView:
+                    padding: 10
+                    do_scroll_x: False
+                    do_scroll_y: True
+                    scroll_wheel_distance: 30
+
+                    GridLayout:
+                        id: transactions_grid
+                        cols: 1
+                        spacing: 10
+                        size_hint:(1, None)
+                        minimum_height: root.height
+                        height: self.minimum_height
+                        row_default_height: root.height/15
+
+
+<Settings>:
+    FloatLayout:
+        canvas:
+            Color:
+                rgba: 1,1,1,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        Banner:
+            text: 'SETTINGS'
+            btn: 'DASHBOARD'
+            btn_colour:(0.85,0.1,0.1,1)
+            method: root.method
+
+        Footer:
+
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: (0.5, 0.3)
+            pos: root.center_x - self.width/2, root.center_y - self.height * (1/2)
+            spacing: 10
+            padding: 10
+            canvas:
+                Color:
+                    rgba: 0.14,0.17,0.19,1
+                RoundedRectangle:
+                    size: self.size
+                    pos: self.pos
+                    radius: [10,]
+
+            GridLayout:
+                id: transactions_grid
+                cols: 1
+                spacing: 10
+                size_hint:(1, 1)
+                minimum_height: root.height
+                height: self.minimum_height
+                row_default_height: root.height/15
+
+                BoxLayout:
+                    BoxLayout:
+                        Label:
+                            size_hint: (None, 1)
+                            width: self.texture_size[0]
+                            pos_x: self.width/2
+                            text: 'Mining:'
+                            font_size: root.height/25
+                    RoundedButton:
+                        text: root.mining
+                        font_size: root.height/25
+                        colour: (1,0,0,1)
+                        on_release: root.change_mining()
+
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Root Node:'
+                    font_size: root.height/25
+                TextInput:
+                    id: node
+                    font_size: root.height/25
+                    multiline: False
+
+
+
+
+<Banner>:
+    BoxLayout:
+        width: root.width
+        height: root.height/8
+        pos: 0, root.top - self.height
+        padding: 10
+        canvas:
+            Color:
+                rgba: 0.14,0.17,0.19,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+        BoxLayout:
+            size_hint: (0.7, 1)
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                id: lbl
+                text: root.text
+                font_size: root.height/15
+                bold: True
+        BoxLayout:
+            size_hint: (0.3,1)
+            padding: self.height/5
+            RoundedButton:
+                colour: root.btn_colour
+                text: root.btn
+                font_size: root.height/25
+                on_release: root.method()
+
+<Footer>:
+    BoxLayout:
+        width: root.width
+        height: root.height/8
+        pos: 0, 0
+        padding: 10
+        canvas:
+            Color:
+                rgba: 0.14,0.17,0.19,1
+            Rectangle:
+                size: self.size
+                pos: self.pos
+
+        BoxLayout:
+            padding: self.height/10
+            orientation: 'vertical'
+            GridLayout:
+                size_hint: (1, 0.8)
+                cols: 2
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Device ID:'
+                    font_size: root.height/30
+                Label:
+                    text: app.device_id
+                    font_size: root.height/30
+
+        SeparationLine:
+
+        BoxLayout:
+            padding: self.height/10
+            orientation: 'vertical'
+            GridLayout:
+                size_hint: (1, 0.8)
+                cols: 2
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Status:'
+                    font_size: root.height/35
+                Label:
+                    text: app.status
+                    font_size: root.height/35
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Connections:'
+                    font_size: root.height/35
+                Label:
+                    text: app.connections
+                    font_size: root.height/35
+        SeparationLine:
+        BoxLayout:
+            padding: self.height/10
+            orientation: 'vertical'
+            GridLayout:
+                size_hint: (1, 0.8)
+                cols: 2
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Blockheight:'
+                    font_size: root.height/35
+                Label:
+                    text: app.blockheight
+                    font_size: root.height/35
+                Label:
+                    size_hint: (None, 1)
+                    width: self.texture_size[0]
+                    pos_x: self.width/2
+                    text: 'Mining:'
+                    font_size: root.height/35
+                Label:
+                    text: app.mining_txt
+                    font_size: root.height/35
+
+
+<SeparationLine>:
+    size_hint: (None, 1)
+    width: root.width
+    canvas:
+        Color:
+            rgba: 1, 1, 1, 1
+        Line:
+            cap: 'none'
+            width: root.width/40
+            points: [self.x + self.width/2, self.top, self.x + self.width/2, self.y]
+
+
+
+<RoundedButton@button>:
+    background_color: 0,0,0,0
+    canvas.before:
+        Color:
+            rgba: (0,0,0,0) if root.text=='' else root.colour if self.state=='normal' else (0,0,0,1)
+
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            radius: [self.height/5,]
+
+    font_size: root.font_size if root.t_size == 1 else self.height/3 if root.t_size == 0 else self.height/2.5
+
+
+<NodePopup>:
+    size_hint: (1, 0.7)
+    title: root.heading
+    title_size: root.height/25
+    separator_color: (1, 1, 1, 1)
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        GridLayout:
+            cols: 2
+            size_hint: (1, 0.9)
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'PORT:'
+                font_size: root.height/25
+            Label:
+                id: port
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'VERSION:'
+                font_size: root.height/25
+            Label:
+                id: version
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'SERVICES:'
+                font_size: root.height/25
+            Label:
+                id: services
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'LAST SEND:'
+                font_size: root.height/25
+            Label:
+                id: last_send
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'LAST RECEIVE:'
+                font_size: root.height/25
+            Label:
+                id: last_recv
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'BLOCKHEIGHT:'
+                font_size: root.height/25
+            Label:
+                id: n_blockheight
+                font_size: root.height/25
+        RoundedButton:
+            size_hint:(0.5, 0.1)
+            pos_hint: {'x': 0.25}
+            pos_x: root.center_x
+            colour: (0.85,0.1,0.1,1)
+            text: 'BACK'
+            t_size: 2
+            on_release: root.dismiss()
+
+<LoginPopup>:
+    size_hint: (1, 0.3)
+    title: 'LOGIN'
+    title_size: root.height/10
+    separator_color: (1, 1, 1, 1)
+    auto_dismiss: False
+
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            size_hint: (1,0.7)
+            text: root.msg
+            font_size: root.height/10
+
+        RoundedButton:
+            size_hint:(0.5, 0.3)
+            pos_hint: {'x': 0.25}
+            pos_x: root.center_x
+            colour: (0.85,0.1,0.1,1)
+            text: 'BACK'
+            t_size: 2
+            on_release: root.dismiss()
+
+<TransactionPopup>:
+    size_hint: (1, 0.85)
+    title: 'Transaction: ' + root.heading
+    title_size: root.height/25
+    separator_color: (1, 1, 1, 1)
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 5
+        padding: 10
+        GridLayout:
+            spacing: 10
+            cols: 2
+            size_hint: (1, 0.9)
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'FROM'
+                font_size: root.height/25
+
+            ScrollView:
+                size_hint: (1, 0.9)
+                padding: 10
+                do_scroll_x: True
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                Label:
+                    id: from_addr
+                    size_hint: (None,1)
+                    width: self.texture_size[0]
+                    height: self.texture_size[1]
+                    pos_x: self.width/2
+                    font_size: root.height/25
+
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'TO:'
+                font_size: root.height/25
+
+            ScrollView:
+                size_hint: (1, 0.9)
+                padding: 10
+                do_scroll_x: True
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                Label:
+                    id: to_addr
+                    size_hint: (None,None)
+                    width: self.texture_size[0]
+                    height: self.texture_size[1]
+                    pos_x: self.width/2
+                    font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'TYPE:'
+                font_size: root.height/25
+            Label:
+                id: type
+                text: app.blockheight
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'TIMESTAMP:'
+                font_size: root.height/25
+            Label:
+                id: timestamp
+                text: app.blockheight
+                font_size: root.height/25
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'INPUTS'
+                font_size: root.height/25
+            ScrollView:
+                size_hint: (1, 0.9)
+                padding: 10
+                do_scroll_x: True
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                Label:
+                    id: inputs
+                    size_hint: (None,None)
+                    width: self.texture_size[0]
+                    height: self.texture_size[1]
+                    pos_x: self.width/2
+                    font_size: root.height/35
+
+            Label:
+                size_hint: (None, 1)
+                width: self.texture_size[0]
+                pos_x: self.width/2
+                text: 'OUTPUTS:'
+                font_size: root.height/25
+            ScrollView:
+                size_hint: (1, 0.9)
+                padding: 10
+                do_scroll_x: True
+                do_scroll_y: True
+                scroll_wheel_distance: 30
+
+                Label:
+                    id: outputs
+                    size_hint: (None,None)
+                    width: self.texture_size[0]
+                    height: self.texture_size[1]
+                    pos_x: self.width/2
+                    font_size: root.height/35
+
+        RoundedButton:
+            size_hint:(0.5, 0.1)
+            pos_hint: {'x': 0.25}
+            pos_x: root.center_x
+            colour: (0.85,0.1,0.1,1)
+            text: root.txt
+            t_size: 2
+            on_release: root.button()
+
+<ErrorPopup>:
+    size_hint: (1, 0.3)
+    title: root.heading
+    title_size: root.height/10
+    separator_color: (1, 1, 1, 1)
+    auto_dismiss: False
+    BoxLayout:
+        orientation: 'vertical'
+        spacing: 5
+        GridLayout:
+            spacing: 10
+            cols: 2
+            size_hint: (1, 0.9)
+
+        Label:
+            id: msg
+            font_size: root.height/10
+
+        RoundedButton:
+            size_hint:(0.5, 1)
+            pos_hint: {'x': 0.25}
+            pos_x: root.center_x
+            colour: (0.85,0.1,0.1,1)
+            text: 'BACK'
+            t_size: 1.5
+            on_release: root.dismiss()
+
+
+<Option>:
+    orientation: 'vertical'
+    Label:
+        size_hint: (None, None)
+        height: self.texture_size[1]
+        width: self.texture_size[0]
+        pos_x: self.width/2
+        pos_y: 0
+        text: root.label
+        font_size: root.height/3
+
+    TextInput:
+        id: input
+        font_size: self.height * (3/5)
+        multiline: False
+
+<DynamicLabel>
+    text_size: (self.width, None)
+    font_size: int(root.height * 3/5)
+    multiline: True
