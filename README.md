@@ -7,6 +7,8 @@ Simple blockchain project with the ability to host and vote on polls. Features a
 * [Kivy](https://kivy.org/#home) (2.0.0)
 * [Cyrptography](https://pypi.org/project/cryptography/) (3.4.7)
 
+Stated versions of these module will work whereas updated versions haven't been tested with this project. 
+
 # Running the Code
 Ensure that all files are in the same folder. 
 
